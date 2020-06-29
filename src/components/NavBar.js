@@ -1,5 +1,5 @@
 import React from "react";
-
+import { withCookies } from 'react-cookie';
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import ToolBar from "@material-ui/core/Toolbar";
@@ -14,8 +14,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const NavBar = () => {
+const NavBar = (props) => {
   const classes = useStyles();
+
+  const logout = () => {
+      props.cookies.remove('jwt-token');
+      window.location.href = '/';
+  }
 
   return (
     <AppBar position="static">
@@ -26,7 +31,7 @@ export const NavBar = () => {
         </button>
         <Typography variant="h5" className={classes.title}>Youtube App</Typography>
 
-        <button className="logout">
+        <button className="logout" onClick={()=>logout()}>
             <FiLogOut/>
         </button>
 
@@ -34,3 +39,5 @@ export const NavBar = () => {
     </AppBar>
   );
 };
+
+export default withCookies(NavBar)
