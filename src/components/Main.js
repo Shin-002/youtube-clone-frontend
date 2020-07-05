@@ -41,8 +41,18 @@ const Main = () => {
             left: '43%',
             right: 'auto',
             bottom: 'auto',
-        }
+        },
     };
+
+    const handleEditMovie = () => {
+        const fileInput = document.getElementById("mp4Input");
+        fileInput.click();
+    };
+
+    const handleEditPicture = () => {
+        const fileInput = document.getElementById("imageInput");
+        fileInput.click();
+    }
 
     return (
       <>
@@ -89,6 +99,32 @@ const Main = () => {
                     hidden="hidden"
                     onChange={(event)=>setVideo(event.target.files[0])}
                 />
+
+                <IconButton onClick={handleEditMovie}>
+                    <FaVideo className="photo" />
+                </IconButton>
+
+                <input
+                    type="file"
+                    id="imageInput"
+                    hidden="hidden"
+                    onChange={(event) => setThum(event.target.files[0])}
+                />
+
+                <IconButton onClick={handleEditPicture}>
+                    <BsImages className="photo" />
+                </IconButton>
+                <br />
+
+                {title && video && thum && (
+                    <button className="btn-modal" onClick={() => newVideo()}>
+                        <RiUploadCloud2Line />                    
+                    </button>
+                )}
+                <button className="btn-modal" onClick={() => setModalIsOpen(false)}>
+                    <IoMdClose />
+                </button>
+
             </Container>
         </Modal>
 

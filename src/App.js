@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import indigo from "@material-ui/core/colors/indigo";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
